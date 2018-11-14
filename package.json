@@ -1,14 +1,19 @@
 {
   "scripts": {
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "css:build": "postcss src/styles/index.css -o assets/styles/index.css",
+    "css:watch": "postcss src/styles/index.css -o assets/styles/index.css -w",
+    "storybook": "yarn css:watch & start-storybook -p 9001 -c .storybook"
   },
   "dependencies": {
     "@babel/core": "^7.1.5",
     "@storybook/addon-actions": "^4.0.4",
     "@storybook/react": "^4.0.4",
+    "autoprefixer": "^9.3.1",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.4",
+    "postcss-cli": "^6.0.1",
     "react": "^16.6.1",
-    "react-dom": "^16.6.1"
+    "react-dom": "^16.6.1",
+    "tailwindcss": "^0.7.2"
   }
 }

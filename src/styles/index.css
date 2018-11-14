@@ -1,0 +1,13 @@
+@tailwind preflight;
+@tailwind utilities;
+/* Your custom CSS here */
+
+.flex-2 {
+  flex: 2;
+}
+
+.flex-3 {
+  flex: 3;
+}
+
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
