@@ -53,7 +53,8 @@ const defaultComments = [
 const colors = {
   general: "blue",
   surgery: "red",
-  clear: "grey"
+  clear: "grey",
+  nothing: "green"
 };
 
 export default class CommentStream extends React.Component {
@@ -90,7 +91,7 @@ export default class CommentStream extends React.Component {
         <div className="flex flex-col bg-white p-4 m-4 rounded-lg flex-grow overflow-hidden">
           {/* Filter Control */}
           <ul className="list-reset flex flex-row border-b-2 py-4">
-            {["clear", "general", "surgery"].map(cat => (
+            {["clear", "general", "surgery", "nothing"].map(cat => (
               <FilterItem
                 name={cat.charAt(0).toUpperCase() + cat.slice(1)}
                 color={colors[cat]}
@@ -102,8 +103,8 @@ export default class CommentStream extends React.Component {
 
           <div className="flex flex-row h-screen">
             {/* @as #commentList */}
-            <ul className={`list-reset flex-grow overflow-y-scroll ${this.props.sidebar ? 'max-w-xl' : null}`}>
-              {this.state.comments.map((comment, index) => (
+            <ul className={`list-reset flex-grow overflow-y-scroll ${this.props.sidebar ? 'w-2/3' : null}`}>
+              {this.state.comments.length > 0 ? (this.state.comments.map((comment, index) => (
                 <Comment
                   key={index}
                   user={comment.user.name}
@@ -113,7 +114,13 @@ export default class CommentStream extends React.Component {
                   attachments={comment.attachments || null}
                   onClick={() => this.handleCommentClick(index)}
                 />
-              ))}
+              ))) : (
+                <div className="flex items-center justify-center h-full">
+                  <div className="text-grey-light">
+                    No Notes match this filter.
+                  </div>
+                </div>
+              )}
             </ul>
             {!this.props.sidebar ? null : (
               <Details comment={this.state.selectedComment} />
